@@ -8,5 +8,5 @@ module "n8n" {
 }
 
 output "lb_dns_name" {
-  value = module.n8n.lb_dns_name 
+  value = module.n8n.lb_dns_name
 }

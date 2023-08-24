@@ -21,7 +21,7 @@ resource "aws_efs_file_system" "main" {
 }
 
 resource "aws_efs_mount_target" "mount" {
-  for_each        = zipmap(
+  for_each = zipmap(
     local.azs,
     module.vpc.private_subnets
   )
