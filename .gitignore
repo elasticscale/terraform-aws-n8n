@@ -34,3 +34,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 examples/general/.terraform.lock.hcl
+examples/elasticscale
