@@ -44,6 +44,12 @@ resource "aws_ecs_task_definition" "taskdef" {
           readOnly      = false
         }
       ]
+      environment = [
+        {
+          name  = "WEBHOOK_URL"
+          value = var.url != null ? var.url : "${var.certificate_arn == null ? "http" : "https"}://${aws_lb.main.dns_name}/"
+        }
+      ]
       logConfiguration = {
         logDriver = "awslogs"
         options = {
