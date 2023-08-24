@@ -108,7 +108,7 @@ resource "aws_ecs_service" "service" {
       aws_security_group.n8n.id
     ]
     // this way we dont need a NAT gateway or VPC endpoint for pulling the images
-    // traffic is only allowed from the LB though
+    // traffic is only allowed from the LB anyway so this is safe
     assign_public_ip = true
   }
   load_balancer {
