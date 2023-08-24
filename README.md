@@ -1,5 +1,3 @@
-
-
 ## Description
 
 This sets up a N8n cluster with two Fargate Spot instances and a ALB. It is backed by an EFS file system to store the state. The total costs are around 6 USD per month (provided your ALB is in the free tier).
@@ -57,4 +55,4 @@ No requirements.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_lb_dns_name"></a> [lb\_dns\_name](#output\_lb\_dns\_name) | n/a |
+| <a name="output_lb_dns_name"></a> [lb\_dns\_name](#output\_lb\_dns\_name) | Load balancer DNS name |
