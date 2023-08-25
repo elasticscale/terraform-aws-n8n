@@ -48,6 +48,10 @@ resource "aws_ecs_task_definition" "taskdef" {
         {
           name  = "WEBHOOK_URL"
           value = var.url != null ? var.url : "${var.certificate_arn == null ? "http" : "https"}://${aws_lb.main.dns_name}/"
+        },
+        {
+          name  = "N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN"
+          value = "true"
         }
       ]
       logConfiguration = {
