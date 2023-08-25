@@ -15,7 +15,7 @@ ElasticScale is a Solutions Architecture as a Service focusing on start-ups and 
 
 You can **pause** the subscription at any time and have **direct access** to certified AWS professionals.
 
-Check out our <a href="https://elasticscale.cloud" target="_blank" style="color: #14dcc0; text-decoration: underline">website<a/> for more information.
+Check out our <a href="https://elasticscale.cloud" target="_blank" style="color: #14dcc0; text-decoration: underline">website</a> for more information.
 
 <img src="https://elasticscale-public.s3.eu-west-1.amazonaws.com/logo/Logo_ElasticScale_4kant-transparant.png" alt="ElasticScale logo" width="150"/>
 
