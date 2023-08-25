@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "taskdef" {
   container_definitions = jsonencode([
     {
       name      = "n8n"
-      image     = "n8nio/n8n:1.4.0"
+      image     = var.container_image
       essential = true
       portMappings = [
         {

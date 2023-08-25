@@ -15,3 +15,9 @@ variable "url" {
   description = "URL for n8n (default is LB url), needs a trailing slash if you specify it"
   default     = null
 }
+
+variable "container_image" {
+  type        = string
+  description = "Container image to use for n8n"
+  default     = "n8nio/n8n:1.4.0"
+}
