@@ -16,6 +16,12 @@ variable "url" {
   default     = null
 }
 
+variable "desired_count" {
+  type        = number
+  description = "Desired count of n8n tasks, be careful with this to make it more than 1 as it can cause issues with webhooks not registering properly"
+  default     = 1
+}
+
 variable "container_image" {
   type        = string
   description = "Container image to use for n8n"

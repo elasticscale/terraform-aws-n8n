@@ -106,7 +106,7 @@ resource "aws_ecs_service" "service" {
   name            = "${var.prefix}-service"
   cluster         = aws_ecs_cluster.ecs.id
   task_definition = aws_ecs_task_definition.taskdef.arn
-  desired_count   = 2
+  desired_count   = var.desired_count
   capacity_provider_strategy {
     capacity_provider = "FARGATE_SPOT"
     weight            = 100
