@@ -3,6 +3,22 @@
 This sets up a N8n cluster with two Fargate Spot instances and a ALB. It is backed by an EFS file system to store the state. The total costs are around 6 USD per month (provided your ALB is in the free tier).
 It does not come with SSL (optionally it can listen for SSL connections), but this would raise the cost. You can also use a service like Cloudflare to run the SSL for you.
 
+## About ElasticScale
+
+ElasticScale is a Solutions Architecture as a Service focusing on start-ups and scale-ups. For a fixed monthly subscription fee, we handle all your AWS workloads. Some services include:
+
+* Migrating **existing workloads** to AWS
+* Implementing the **Zero Trust security model**
+* Integrating **DevOps principles** within your organization
+* Moving to **infrastructure automation** (Terraform)
+* Complying with **ISO27001 regulations within AWS**
+
+You can **pause** the subscription at any time and have **direct access** to certified AWS professionals.
+
+Check out our <a href="https://elasticscale.cloud" target="_blank" style="color: #14dcc0; text-decoration: underline">website<a/> for more information.
+
+<img src="https://elasticscale-public.s3.eu-west-1.amazonaws.com/logo/Logo_ElasticScale_4kant-transparant.png" alt="ElasticScale logo" width="150"/>
+
 ## Requirements
 
 No requirements.
