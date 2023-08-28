@@ -27,3 +27,9 @@ variable "container_image" {
   description = "Container image to use for n8n"
   default     = "n8nio/n8n:1.4.0"
 }
+
+variable "fargate_type" {
+  type        = string
+  description = "Fargate type to use for n8n (either FARGATE or FARGATE_SPOT))"
+  default     = "FARGATE_SPOT"
+}

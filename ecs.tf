@@ -8,11 +8,11 @@ resource "aws_ecs_cluster" "ecs" {
 
 resource "aws_ecs_cluster_capacity_providers" "main" {
   cluster_name       = aws_ecs_cluster.ecs.name
-  capacity_providers = ["FARGATE_SPOT"]
+  capacity_providers = [var.fargate_type]
   default_capacity_provider_strategy {
     base              = 1
     weight            = 100
-    capacity_provider = "FARGATE_SPOT"
+    capacity_provider = var.fargate_type
   }
 }
 
@@ -108,7 +108,7 @@ resource "aws_ecs_service" "service" {
   task_definition = aws_ecs_task_definition.taskdef.arn
   desired_count   = var.desired_count
   capacity_provider_strategy {
-    capacity_provider = "FARGATE_SPOT"
+    capacity_provider = var.fargate_type
     weight            = 100
     base              = 1
   }
