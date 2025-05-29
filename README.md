@@ -66,6 +66,7 @@ No requirements.
 | <a name="input_fargate_type"></a> [fargate\_type](#input\_fargate\_type) | Fargate type to use for n8n (either FARGATE or FARGATE\_SPOT)) | `string` | `"FARGATE_SPOT"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix to add to all resources | `string` | `"n8n"` | no |
 | <a name="input_url"></a> [url](#input\_url) | URL for n8n (default is LB url), needs a trailing slash if you specify it | `string` | `null` | no |
+| <a name="input_ssl_policy"></a> [ssl\_policy](#input\_ssl\_policy) | SSL policy for HTTPS listner. | `string` | `ELBSecurityPolicy-TLS13-1-2-2021-06` | no |
 
 ## Outputs
 
