@@ -39,3 +39,8 @@ variable "ssl_policy" {
   description = "The name of the SSL policy to use for the HTTPS Listener on the ALB"
   default     = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Ttags to apply to all resources"
+}

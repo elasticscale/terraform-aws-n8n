@@ -4,6 +4,8 @@ resource "aws_ecs_cluster" "ecs" {
     name  = "containerInsights"
     value = "disabled"
   }
+
+  tags = var.tags
 }
 
 resource "aws_ecs_cluster_capacity_providers" "main" {
@@ -14,11 +16,15 @@ resource "aws_ecs_cluster_capacity_providers" "main" {
     weight            = 100
     capacity_provider = var.fargate_type
   }
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_group" "logs" {
   name              = "${var.prefix}-logs"
   retention_in_days = 1
+
+  tags = var.tags
 }
 
 resource "aws_ecs_task_definition" "taskdef" {
@@ -80,6 +86,8 @@ resource "aws_ecs_task_definition" "taskdef" {
   network_mode             = "awsvpc"
   cpu                      = 256
   memory                   = 512
+
+  tags = var.tags
 }
 
 resource "aws_security_group" "n8n" {
@@ -100,6 +108,8 @@ resource "aws_security_group" "n8n" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+
+  tags = var.tags
 }
 
 resource "aws_ecs_service" "service" {
@@ -126,4 +136,6 @@ resource "aws_ecs_service" "service" {
     container_name   = "n8n"
     container_port   = 5678
   }
+
+  tags = var.tags
 }
