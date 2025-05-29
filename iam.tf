@@ -21,7 +21,7 @@ resource "aws_iam_role_policy" "taskrole" {
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
-    name = "${var.prefix}-task-policy"
+    name = "${var.prefix}-taskrole-policy"
     policy = jsonencode({
       Version = "2012-10-17"
       // todo
