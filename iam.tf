@@ -21,25 +21,21 @@ resource "aws_iam_role_policy" "taskrole" {
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
-    name = "${var.prefix}-taskrole-policy"
-    policy = jsonencode({
-      Version = "2012-10-17"
-      // todo
-      Statement = [
-        {
-          Effect = "Allow",
-          Action = [
-            "logs:CreateLogGroup",
-            "logs:CreateLogStream",
-            "logs:PutLogEvents",
-            "logs:DescribeLogStreams"
-          ],
-          Resource = [
-            "arn:aws:logs:*:*:*"
-          ]
-        }
-      ]
-    })
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams"
+        ],
+        Resource = [
+          "arn:aws:logs:*:*:*"
+        ]
+      }
+    ]
   })
 }
 
@@ -66,23 +62,20 @@ resource "aws_iam_role_policy" "executionrole" {
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
-    name = "${var.prefix}-execution-policy"
-    policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
-        {
-          Effect = "Allow",
-          Action = [
-            "logs:CreateLogGroup",
-            "logs:CreateLogStream",
-            "logs:PutLogEvents",
-            "logs:DescribeLogStreams"
-          ],
-          Resource = [
-            "arn:aws:logs:*:*:*"
-          ]
-        }
-      ]
-    })
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams"
+        ],
+        Resource = [
+          "arn:aws:logs:*:*:*"
+        ]
+      }
+    ]
   })
 }
