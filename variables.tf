@@ -42,5 +42,6 @@ variable "ssl_policy" {
 
 variable "tags" {
   type        = map(string)
-  description = "Ttags to apply to all resources"
+  description = "Tags to apply to all resources"
+  default = null
 }
