@@ -39,8 +39,6 @@ resource "aws_iam_role_policy" "taskrole" {
       }
     ]
   })
-
-  tags = var.tags
 }
 
 resource "aws_iam_role" "executionrole" {
@@ -84,6 +82,4 @@ resource "aws_iam_role_policy" "executionrole" {
       }
     ]
   })
-
-  tags = var.tags
 }

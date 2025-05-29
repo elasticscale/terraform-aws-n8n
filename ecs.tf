@@ -16,8 +16,6 @@ resource "aws_ecs_cluster_capacity_providers" "main" {
     weight            = 100
     capacity_provider = var.fargate_type
   }
-
-  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_group" "logs" {
