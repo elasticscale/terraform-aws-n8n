@@ -14,10 +14,14 @@ resource "aws_security_group" "efs" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = var.tags
 }
 
 resource "aws_efs_file_system" "main" {
   creation_token = "${var.prefix}-efs"
+
+  tags = var.tags
 }
 
 resource "aws_efs_mount_target" "mount" {
@@ -40,4 +44,6 @@ resource "aws_efs_access_point" "access" {
       permissions = "777"
     }
   }
+
+  tags = var.tags
 }

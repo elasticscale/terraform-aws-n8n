@@ -33,3 +33,15 @@ variable "fargate_type" {
   description = "Fargate type to use for n8n (either FARGATE or FARGATE_SPOT))"
   default     = "FARGATE_SPOT"
 }
+
+variable "ssl_policy" {
+  type        = string
+  description = "The name of the SSL policy to use for the HTTPS Listener on the ALB"
+  default     = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources"
+  default = null
+}

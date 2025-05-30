@@ -19,6 +19,8 @@ resource "aws_security_group" "alb" {
     protocol    = "-1"
     cidr_blocks = [module.vpc.vpc_cidr_block]
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb" "main" {
@@ -28,6 +30,8 @@ resource "aws_lb" "main" {
   security_groups            = [aws_security_group.alb.id]
   subnets                    = module.vpc.public_subnets
   enable_deletion_protection = false
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "ip" {
@@ -44,6 +48,8 @@ resource "aws_lb_target_group" "ip" {
     interval            = 30
     path                = "/healthz"
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "http" {
@@ -55,6 +61,8 @@ resource "aws_lb_listener" "http" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ip.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "https" {
@@ -62,10 +70,12 @@ resource "aws_lb_listener" "https" {
   load_balancer_arn = aws_lb.main.arn
   port              = "443"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+  ssl_policy        = var.ssl_policy
   certificate_arn   = var.certificate_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ip.arn
   }
+
+  tags = var.tags
 }
