@@ -43,5 +43,47 @@ variable "ssl_policy" {
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to all resources"
-  default = null
+  default     = null
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID to deploy n8n into (optional, creates new VPC if not provided)"
+  default     = null
+}
+
+variable "subnet_ids" {
+  type        = list(string)
+  description = "Subnet IDs for ECS tasks (optional, uses VPC subnets if not provided)"
+  default     = []
+}
+
+variable "public_subnet_ids" {
+  type        = list(string)
+  description = "Public subnet IDs for ALB (optional, uses VPC public subnets if not provided)"
+  default     = []
+}
+
+variable "use_private_subnets" {
+  type        = bool
+  description = "Whether to deploy ECS tasks in private subnets (requires NAT Gateway or VPC endpoints for internet access)"
+  default     = false
+}
+
+variable "alb_allowed_cidr_blocks" {
+  type        = list(string)
+  description = "List of CIDR blocks allowed to access the ALB (default: allows all traffic)"
+  default     = ["0.0.0.0/0"]
+}
+
+variable "cpu" {
+  type        = number
+  description = "CPU units for the Fargate task (256, 512, 1024, 2048, 4096)"
+  default     = 256
+}
+
+variable "memory" {
+  type        = number
+  description = "Memory (MB) for the Fargate task"
+  default     = 512
 }
