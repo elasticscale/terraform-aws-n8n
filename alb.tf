@@ -1,23 +1,23 @@
 resource "aws_security_group" "alb" {
   name   = "${var.prefix}-alb"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = local.vpc_id
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.alb_allowed_cidr_blocks
   }
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.alb_allowed_cidr_blocks
   }
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [module.vpc.vpc_cidr_block]
+    cidr_blocks = [local.vpc_cidr_block]
   }
 
   tags = var.tags
@@ -28,7 +28,7 @@ resource "aws_lb" "main" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.alb.id]
-  subnets                    = module.vpc.public_subnets
+  subnets                    = local.public_subnets
   enable_deletion_protection = false
 
   tags = var.tags
@@ -40,7 +40,7 @@ resource "aws_lb_target_group" "ip" {
   deregistration_delay = 30
   protocol             = "HTTP"
   target_type          = "ip"
-  vpc_id               = module.vpc.vpc_id
+  vpc_id               = local.vpc_id
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2

@@ -62,7 +62,7 @@ resource "aws_ecs_task_definition" "taskdef" {
         logDriver = "awslogs"
         options = {
           awslogs-group         = aws_cloudwatch_log_group.logs.name
-          awslogs-region        = data.aws_region.current.name
+          awslogs-region        = data.aws_region.current.id
           awslogs-stream-prefix = "n8n"
         }
       }
@@ -90,7 +90,7 @@ resource "aws_ecs_task_definition" "taskdef" {
 
 resource "aws_security_group" "n8n" {
   name   = "${var.prefix}-sg"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = local.vpc_id
   ingress {
     from_port = 5678
     to_port   = 5678
@@ -121,13 +121,13 @@ resource "aws_ecs_service" "service" {
     base              = 1
   }
   network_configuration {
-    subnets = module.vpc.public_subnets
+    subnets = local.ecs_subnets
     security_groups = [
       aws_security_group.n8n.id
     ]
-    // this way we dont need a NAT gateway or VPC endpoint for pulling the images
-    // traffic is only allowed from the LB anyway so this is safe
-    assign_public_ip = true
+    # Only assign public IP when using public subnets
+    # Private subnets should route through NAT Gateway for internet access
+    assign_public_ip = !var.use_private_subnets && length(var.subnet_ids) == 0
   }
   load_balancer {
     target_group_arn = aws_lb_target_group.ip.arn
