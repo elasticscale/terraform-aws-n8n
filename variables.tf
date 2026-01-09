@@ -25,7 +25,7 @@ variable "desired_count" {
 variable "container_image" {
   type        = string
   description = "Container image to use for n8n"
-  default     = "n8nio/n8n:1.4.0"
+  default     = "n8nio/n8n:1.123.11"
 }
 
 variable "fargate_type" {
